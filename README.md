@@ -1,6 +1,6 @@
 # CodeLearn
 
-C/C++ öğrenme mobil uygulaması — bitirme projesi.  
+C/C++ öğrenme mobil uygulaması.  
 Expo (React Native) + NestJS + Google Gemini + Judge0.
 
 Portföy: [nadireeee.github.io/portfolio](https://nadireeee.github.io/portfolio/#bitirme)
@@ -86,4 +86,4 @@ Expo · React Native · TypeScript · NestJS · Gemini · MongoDB · PostgreSQL 
 
 ## Lisans
 
-Bitirme / eğitim amaçlı. Kaynak kod örnek olarak paylaşılmıştır.
+Eğitim amaçlı. Kaynak kod örnek olarak paylaşılmıştır.
