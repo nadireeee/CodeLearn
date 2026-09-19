@@ -7,17 +7,17 @@ Portföy: [nadireeee.github.io/portfolio](https://nadireeee.github.io/portfolio/
 
 ## Ekranlar
 
-| Google giriş | Ana ekran | Dersler |
+| Google giriş | Giriş sonrası (Nadire) | Ana ekran |
 | :---: | :---: | :---: |
-| ![Login](docs/screenshots/01-login.png) | ![Ana ekran](docs/screenshots/02-ana-ekran.png) | ![Dersler](docs/screenshots/02-dersler.png) |
+| ![Login](docs/screenshots/01-login.png) | ![Giriş sonrası](docs/screenshots/02-giris-sonrasi.png) | ![Ana ekran](docs/screenshots/02-ana-ekran.png) |
 
-| Ders içerik | Quiz seçim (Duolingo) | Quiz soru |
+| Quiz seçim (canlı) | Quiz soru | Quiz cevap |
 | :---: | :---: | :---: |
-| ![Ders](docs/screenshots/03-ders-icerik.png) | ![Quiz seçim](docs/screenshots/04-quiz-secim.png) | ![Quiz](docs/screenshots/05-quiz.png) |
+| ![Quiz seçim](docs/screenshots/04-quiz-secim.png) | ![Quiz](docs/screenshots/05-quiz.png) | ![Quiz 2](docs/screenshots/05b-quiz-2.png) |
 
-| Chead Chat | Chat (scroll) | Kod analizi (doğru/yanlış) |
+| Chead sohbet | İlerleme (istatistik) | Kod + AI değerlendirme |
 | :---: | :---: | :---: |
-| ![Chat](docs/screenshots/07-ai-chat.png) | ![Scroll](docs/screenshots/07b-ai-chat-scroll.png) | ![Analiz](docs/screenshots/14-kod-analiz-oneri.png) |
+| ![Chat](docs/screenshots/07-ai-chat.png) | ![İstatistik](docs/screenshots/10-istatistik.png) | ![Analiz](docs/screenshots/14-kod-analiz-oneri.png) |
 
 | AI Kod Oluşturucu | Yeni proje | Kod üretildi |
 | :---: | :---: | :---: |
