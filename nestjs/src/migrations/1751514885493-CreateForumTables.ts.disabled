@@ -1,0 +1,53 @@
+import { MigrationInterface, QueryRunner } from "typeorm";
+
+export class CreateForumTables1751514885493 implements MigrationInterface {
+    name = 'CreateForumTables1751514885493'
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`CREATE TABLE "comments" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "content" text NOT NULL, "questionId" uuid, "answerId" uuid, "authorId" uuid NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "updatedAt" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_8bf68bc960f2b69e818bdb90dcb" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TYPE "public"."votes_type_enum" AS ENUM('1', '-1')`);
+        await queryRunner.query(`CREATE TABLE "votes" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "type" "public"."votes_type_enum" NOT NULL, "userId" uuid NOT NULL, "questionId" uuid, "answerId" uuid, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "UQ_d20bab3f126768a008502d4b6b9" UNIQUE ("userId", "answerId"), CONSTRAINT "UQ_6ac4272572878ff09c95159724e" UNIQUE ("userId", "questionId"), CONSTRAINT "PK_f3d9fd4a0af865152c3f59db8ff" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "answers" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "content" text NOT NULL, "isAccepted" boolean NOT NULL DEFAULT false, "voteCount" integer NOT NULL DEFAULT '0', "questionId" uuid NOT NULL, "authorId" uuid NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "updatedAt" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_9c32cec6c71e06da0254f2226c6" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "tags" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying(50) NOT NULL, "description" character varying(255), "usageCount" integer NOT NULL DEFAULT '0', "createdAt" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "UQ_d90243459a697eadb8ad56e9092" UNIQUE ("name"), CONSTRAINT "PK_e7dc17249a1148a1970748eda99" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TYPE "public"."questions_status_enum" AS ENUM('open', 'closed', 'duplicate', 'off_topic')`);
+        await queryRunner.query(`CREATE TABLE "questions" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "title" character varying(255) NOT NULL, "content" text NOT NULL, "status" "public"."questions_status_enum" NOT NULL DEFAULT 'open', "viewCount" integer NOT NULL DEFAULT '0', "answerCount" integer NOT NULL DEFAULT '0', "voteCount" integer NOT NULL DEFAULT '0', "isAnswered" boolean NOT NULL DEFAULT false, "category" character varying(50) NOT NULL DEFAULT 'C', "authorId" uuid NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "updatedAt" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_08a6d4b0f49ff300bf3a0ca60ac" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "question_tags" ("questionId" uuid NOT NULL, "tagId" uuid NOT NULL, CONSTRAINT "PK_7e863961b48ec53cf28b1edd48d" PRIMARY KEY ("questionId", "tagId"))`);
+        await queryRunner.query(`CREATE INDEX "IDX_944c6b5fe5501f2cab65ab3218" ON "question_tags" ("questionId") `);
+        await queryRunner.query(`CREATE INDEX "IDX_2693cb37388690d43203631b76" ON "question_tags" ("tagId") `);
+        await queryRunner.query(`ALTER TABLE "comments" ADD CONSTRAINT "FK_8db2a234357898ee18a16f5d409" FOREIGN KEY ("questionId") REFERENCES "questions"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "comments" ADD CONSTRAINT "FK_192a303f8641f3eef18568e2f45" FOREIGN KEY ("answerId") REFERENCES "answers"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "comments" ADD CONSTRAINT "FK_4548cc4a409b8651ec75f70e280" FOREIGN KEY ("authorId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "votes" ADD CONSTRAINT "FK_5169384e31d0989699a318f3ca4" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "votes" ADD CONSTRAINT "FK_21ff9ecd98fc5c421ff87343e1a" FOREIGN KEY ("questionId") REFERENCES "questions"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "votes" ADD CONSTRAINT "FK_bc872d59760328f04b1257b9bb8" FOREIGN KEY ("answerId") REFERENCES "answers"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "answers" ADD CONSTRAINT "FK_c38697a57844f52584abdb878d7" FOREIGN KEY ("questionId") REFERENCES "questions"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "answers" ADD CONSTRAINT "FK_eb21b7568b66f2fbc1d0f8c0ddd" FOREIGN KEY ("authorId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "questions" ADD CONSTRAINT "FK_ca251175a93ed97051be0df6e6f" FOREIGN KEY ("authorId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "question_tags" ADD CONSTRAINT "FK_944c6b5fe5501f2cab65ab32181" FOREIGN KEY ("questionId") REFERENCES "questions"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
+        await queryRunner.query(`ALTER TABLE "question_tags" ADD CONSTRAINT "FK_2693cb37388690d43203631b76b" FOREIGN KEY ("tagId") REFERENCES "tags"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`ALTER TABLE "question_tags" DROP CONSTRAINT "FK_2693cb37388690d43203631b76b"`);
+        await queryRunner.query(`ALTER TABLE "question_tags" DROP CONSTRAINT "FK_944c6b5fe5501f2cab65ab32181"`);
+        await queryRunner.query(`ALTER TABLE "questions" DROP CONSTRAINT "FK_ca251175a93ed97051be0df6e6f"`);
+        await queryRunner.query(`ALTER TABLE "answers" DROP CONSTRAINT "FK_eb21b7568b66f2fbc1d0f8c0ddd"`);
+        await queryRunner.query(`ALTER TABLE "answers" DROP CONSTRAINT "FK_c38697a57844f52584abdb878d7"`);
+        await queryRunner.query(`ALTER TABLE "votes" DROP CONSTRAINT "FK_bc872d59760328f04b1257b9bb8"`);
+        await queryRunner.query(`ALTER TABLE "votes" DROP CONSTRAINT "FK_21ff9ecd98fc5c421ff87343e1a"`);
+        await queryRunner.query(`ALTER TABLE "votes" DROP CONSTRAINT "FK_5169384e31d0989699a318f3ca4"`);
+        await queryRunner.query(`ALTER TABLE "comments" DROP CONSTRAINT "FK_4548cc4a409b8651ec75f70e280"`);
+        await queryRunner.query(`ALTER TABLE "comments" DROP CONSTRAINT "FK_192a303f8641f3eef18568e2f45"`);
+        await queryRunner.query(`ALTER TABLE "comments" DROP CONSTRAINT "FK_8db2a234357898ee18a16f5d409"`);
+        await queryRunner.query(`DROP INDEX "public"."IDX_2693cb37388690d43203631b76"`);
+        await queryRunner.query(`DROP INDEX "public"."IDX_944c6b5fe5501f2cab65ab3218"`);
+        await queryRunner.query(`DROP TABLE "question_tags"`);
+        await queryRunner.query(`DROP TABLE "questions"`);
+        await queryRunner.query(`DROP TYPE "public"."questions_status_enum"`);
+        await queryRunner.query(`DROP TABLE "tags"`);
+        await queryRunner.query(`DROP TABLE "answers"`);
+        await queryRunner.query(`DROP TABLE "votes"`);
+        await queryRunner.query(`DROP TYPE "public"."votes_type_enum"`);
+        await queryRunner.query(`DROP TABLE "comments"`);
+    }
+}

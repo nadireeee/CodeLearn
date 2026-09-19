@@ -1,0 +1,46 @@
+# Dependencies & build
+node_modules/
+dist/
+build/
+.expo/
+web-build/
+coverage/
+*.tsbuildinfo
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+credentials.json
+service-account*.json
+
+# Agent / IDE noise (must not appear on GitHub)
+.cursor/
+.claude/
+.agent/
+.agents/
+AGENTS.md
+CLAUDE.md
+.cursorrules
+*.cursor*
+agent-transcripts/
+.vscode/
+*.code-workspace
+
+# OS / logs / temp
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+temp/
+uploads/*
+!uploads/.gitkeep
+
+# Local / debug
+.config/
+.turbo/
+*.local
+_debug*
+_capture*
