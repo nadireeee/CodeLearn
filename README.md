@@ -7,35 +7,39 @@ Portföy: [nadireeee.github.io/portfolio](https://nadireeee.github.io/portfolio/
 
 ## Ekranlar
 
-Canlı uygulamadan (dark tema) alınan görüntüler:
-
-| Giriş | Ana ekran | Dersler |
+| Google giriş | Ana ekran | Dersler |
 | :---: | :---: | :---: |
 | ![Login](docs/screenshots/01-login.png) | ![Ana ekran](docs/screenshots/02-ana-ekran.png) | ![Dersler](docs/screenshots/02-dersler.png) |
 
-| Ders içerik | Quiz seçim | Quiz |
+| Ders içerik | Quiz seçim (Duolingo) | Quiz soru |
 | :---: | :---: | :---: |
 | ![Ders](docs/screenshots/03-ders-icerik.png) | ![Quiz seçim](docs/screenshots/04-quiz-secim.png) | ![Quiz](docs/screenshots/05-quiz.png) |
+
+| Chead Chat | Chat (scroll) | Kod analizi (doğru/yanlış) |
+| :---: | :---: | :---: |
+| ![Chat](docs/screenshots/07-ai-chat.png) | ![Scroll](docs/screenshots/07b-ai-chat-scroll.png) | ![Analiz](docs/screenshots/14-kod-analiz-oneri.png) |
 
 | AI Kod Oluşturucu | Yeni proje | Kod üretildi |
 | :---: | :---: | :---: |
 | ![Boş](docs/screenshots/08a-kod-bos.png) | ![Yeni proje](docs/screenshots/08b-yeni-proje-ai.png) | ![StringLibrary](docs/screenshots/08-ai-kod-olusturucu.png) |
 
-| Generate sonucu | Rastgele sorular | Derleme hatası + AI |
+| Generate | Rastgele sorular | Derleme hatası + AI |
 | :---: | :---: | :---: |
 | ![Kod](docs/screenshots/08c-kod-olusturuldu.png) | ![Rastgele](docs/screenshots/10-rastgele-sorular.png) | ![Hata/AI](docs/screenshots/12-ai-oneri-degerlendirme.png) |
 
-| Chead Chat | Chat (scroll) | Profil |
+| İlerleme (istatistik) | Rozetler | Profil |
 | :---: | :---: | :---: |
-| ![Chat](docs/screenshots/07-ai-chat.png) | ![Scroll](docs/screenshots/07b-ai-chat-scroll.png) | ![Profil](docs/screenshots/06-profil.png) |
+| ![İstatistik](docs/screenshots/10-istatistik.png) | ![Rozet](docs/screenshots/15-rozet-oyunlastirma.png) | ![Profil](docs/screenshots/06-profil.png) |
 
 ## Özellikler
 
-- **Dersler & quiz** — C/C++ konuları, Duolingo tarzı sorular
-- **AI Kod Oluşturucu** — Gemini ile proje/dosya üretimi (ör. StringLibrary)
-- **Rastgele Sorular** — Run / Evaluate, derleme hatası ve AI öneri
-- **Chead Chat** — Gemini ile çok turlu sohbet
-- **Kod çalıştırma** — Judge0 üzerinden derleme/çalıştırma
+- **Google ile giriş** — OAuth (`LoginScreen`)
+- **Duolingo tarzı quiz** — seri sorular, tıkla / yaz-cevapla (`DuolingoQuizScreen`, `QuizSelectionScreen`)
+- **Chead Chat** — Gemini çok turlu sohbet (`AiChatScreen`)
+- **Kod + AI doğru/yanlış öneri** — Evaluate / kod analizi (`RandomQuestionScreen`, `CodeAnalysisScreen`)
+- **İlerleme** — istatistik (`QuizStatsScreen`) ve rozetler (`BadgesScreen`)
+- **AI Kod Oluşturucu** — Gemini ile proje üretimi
+- **Judge0** — kod çalıştırma
 
 ## Yapı
 
@@ -75,8 +79,6 @@ cd frontend
 npm install
 npx expo start
 ```
-
-Expo Go veya web ile aç. API adresinin cihaz/emülatörden erişilebilir olduğundan emin ol.
 
 ## Teknolojiler
 
