@@ -1080,16 +1080,38 @@ const RandomQuestionScreen: React.FC = () => {
 
             {/* Results */}
           {evaluation && (
-            <View style={[styles.resultCard, { backgroundColor: colors.surface }]}>
+            <View style={[styles.resultCard, styles.evaluationCard, { backgroundColor: colors.surface, borderColor: colors.success }]}>
               <View style={styles.resultHeader}>
-                  <Ionicons name="analytics" size={24} color={colors.primary} />
-                <Text style={[styles.resultTitle, { color: colors.text }]}>
+                  <Ionicons name="checkmark-circle" size={28} color={colors.success} />
+                <Text style={[styles.resultTitle, { color: colors.success, fontSize: 20 }]}>
                     {t('randomQuestion.evaluation')}
                 </Text>
               </View>
-              <Text style={[styles.evaluationText, { color: colors.text }]}>
+              <Text style={[styles.evaluationText, { color: colors.text, fontSize: 16, lineHeight: 24 }]}>
                 {evaluation}
-                      </Text>
+              </Text>
+              {suggestions.length > 0 && (
+                <View style={styles.suggestionsBlock}>
+                  <Text style={[styles.suggestionsTitle, { color: colors.primary }]}>
+                    {language === 'en' ? 'Suggestions' : 'Öneriler'}
+                  </Text>
+                  {suggestions.map((s, i) => (
+                    <Text key={i} style={[styles.suggestionItem, { color: colors.text }]}>
+                      • {s}
+                    </Text>
+                  ))}
+                </View>
+              )}
+              {!!suggestedCode && (
+                <View style={[styles.suggestedCodeBlock, { backgroundColor: colors.background }]}>
+                  <Text style={[styles.suggestionsTitle, { color: colors.primary }]}>
+                    {language === 'en' ? 'Suggested code' : 'Önerilen kod'}
+                  </Text>
+                  <Text style={[styles.suggestedCodeText, { color: colors.text }]}>
+                    {suggestedCode}
+                  </Text>
+                </View>
+              )}
             </View>
           )}
 
@@ -1293,6 +1315,35 @@ const styles = StyleSheet.create({
   evaluationText: {
     fontSize: 16,
     lineHeight: 24,
+  },
+  evaluationCard: {
+    borderWidth: 2,
+    marginTop: 8,
+    padding: 18,
+  },
+  suggestionsBlock: {
+    marginTop: 14,
+    gap: 6,
+  },
+  suggestionsTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    marginBottom: 4,
+  },
+  suggestionItem: {
+    fontSize: 15,
+    lineHeight: 22,
+  },
+  suggestedCodeBlock: {
+    marginTop: 14,
+    padding: 12,
+    borderRadius: 10,
+  },
+  suggestedCodeText: {
+    fontSize: 13,
+    fontFamily: 'monospace',
+    lineHeight: 20,
+    marginTop: 6,
   },
   outputText: {
     fontSize: 14,
