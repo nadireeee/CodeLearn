@@ -70,10 +70,51 @@ export const useQuizStats = (language: 'tr' | 'en') => {
         console.warn('❌ User stats failed:', userStatsRes.reason);
       }
 
-      // Progress stats
+      // Progress stats — API raw quiz_progress dizisi veya aggregated skill listesi dönebilir
       let progressStats: any[] = [];
       if (userProgressRes.status === 'fulfilled') {
-        progressStats = userProgressRes.value.data || [];
+        const raw = userProgressRes.value.data || [];
+        if (Array.isArray(raw) && raw.length && raw[0]?.quizId) {
+          const skillNames: Record<string, string> = {
+            variables: language === 'en' ? 'Variables' : 'Değişkenler',
+            operators: language === 'en' ? 'Operators' : 'Operatörler',
+            loops: language === 'en' ? 'Loops' : 'Döngüler',
+            functions: language === 'en' ? 'Functions' : 'Fonksiyonlar',
+            pointers: language === 'en' ? 'Pointers' : 'Pointerlar',
+          };
+          const map: Record<string, any> = {};
+          for (const p of raw) {
+            if (!p.isCompleted) continue;
+            const sid = p.skillId || 'general';
+            if (!map[sid]) {
+              map[sid] = {
+                skillId: sid,
+                skillName: skillNames[sid] || sid,
+                completedQuizzes: 0,
+                totalXP: 0,
+                perfectQuizzes: 0,
+                scoreSum: 0,
+              };
+            }
+            map[sid].completedQuizzes += 1;
+            map[sid].totalXP += p.xpEarned || 0;
+            if (p.isPerfect) map[sid].perfectQuizzes += 1;
+            const ratio =
+              p.totalScore > 0 ? (p.score / p.totalScore) * 100 : 0;
+            map[sid].scoreSum += ratio;
+          }
+          progressStats = Object.values(map).map((s: any) => ({
+            skillId: s.skillId,
+            skillName: s.skillName,
+            completedQuizzes: s.completedQuizzes,
+            totalXP: s.totalXP,
+            perfectQuizzes: s.perfectQuizzes,
+            averageScore:
+              s.completedQuizzes > 0 ? s.scoreSum / s.completedQuizzes : 0,
+          }));
+        } else {
+          progressStats = raw;
+        }
         console.log('✅ Progress stats loaded:', progressStats.length, 'skills');
       } else {
         console.warn('❌ Progress stats failed:', userProgressRes.reason);

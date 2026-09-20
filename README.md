@@ -27,15 +27,16 @@ Portföy: [nadireeee.github.io/portfolio](https://nadireeee.github.io/portfolio/
 | :---: | :---: | :---: |
 | ![Kod](docs/screenshots/08c-kod-olusturuldu.png) | ![Rastgele](docs/screenshots/10-rastgele-sorular.png) | ![Hata/AI](docs/screenshots/12-ai-oneri-degerlendirme.png) |
 
-| İlerleme (istatistik) | Rozetler | Profil |
+| Forum | Rozetler | Profil |
 | :---: | :---: | :---: |
-| ![İstatistik](docs/screenshots/10-istatistik.png) | ![Rozet](docs/screenshots/15-rozet-oyunlastirma.png) | ![Profil](docs/screenshots/06-profil.png) |
+| ![Forum](docs/screenshots/16-forum-liste.png) | ![Rozet](docs/screenshots/15b-rozetler-tab.png) | ![Profil](docs/screenshots/06-profil.png) |
 
 ## Özellikler
 
 - **Google ile giriş** — OAuth (`LoginScreen`)
 - **Duolingo tarzı quiz** — seri sorular, tıkla / yaz-cevapla (`DuolingoQuizScreen`, `QuizSelectionScreen`)
 - **Chead Chat** — Gemini çok turlu sohbet (`AiChatScreen`)
+- **Topluluk forumu** — soru/cevap (`ForumListScreen`)
 - **Kod + AI doğru/yanlış öneri** — Evaluate / kod analizi (`RandomQuestionScreen`, `CodeAnalysisScreen`)
 - **İlerleme** — istatistik (`QuizStatsScreen`) ve rozetler (`BadgesScreen`)
 - **AI Kod Oluşturucu** — Gemini ile proje üretimi
