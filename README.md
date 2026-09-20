@@ -7,25 +7,25 @@ Portföy: [nadireeee.github.io/portfolio](https://nadireeee.github.io/portfolio/
 
 ## Ekranlar
 
-| Google giriş | Giriş sonrası (Nadire) | Ana ekran |
+| Google giriş | Ana ekran | Dersler |
 | :---: | :---: | :---: |
-| ![Login](docs/screenshots/01-login.png) | ![Giriş sonrası](docs/screenshots/02-giris-sonrasi.png) | ![Ana ekran](docs/screenshots/02-ana-ekran.png) |
+| ![Login](docs/screenshots/01-login.png) | ![Ana ekran](docs/screenshots/02-ana-ekran.png) | ![Dersler](docs/screenshots/02-dersler.png) |
 
-| Quiz seçim (canlı) | Quiz soru | Quiz cevap |
+| Ders içerik | Quiz seçim | Duolingo quiz |
 | :---: | :---: | :---: |
-| ![Quiz seçim](docs/screenshots/04-quiz-secim.png) | ![Quiz](docs/screenshots/05-quiz.png) | ![Quiz 2](docs/screenshots/05b-quiz-2.png) |
+| ![Ders](docs/screenshots/03-ders-icerik.png) | ![Quiz seçim](docs/screenshots/04-quiz-secim.png) | ![Quiz](docs/screenshots/05-quiz.png) |
 
-| Chead sohbet | İlerleme (istatistik) | Kod + AI değerlendirme |
+| Quiz (seri) | Chead sohbet | İlerleme (istatistik) |
 | :---: | :---: | :---: |
-| ![Chat](docs/screenshots/07-ai-chat.png) | ![İstatistik](docs/screenshots/10-istatistik.png) | ![Analiz](docs/screenshots/14-kod-analiz-oneri.png) |
+| ![Quiz 2](docs/screenshots/05b-quiz-2.png) | ![Chat](docs/screenshots/07-ai-chat.png) | ![İstatistik](docs/screenshots/10-istatistik.png) |
 
 | AI Kod Oluşturucu | Yeni proje | Kod üretildi |
 | :---: | :---: | :---: |
 | ![Boş](docs/screenshots/08a-kod-bos.png) | ![Yeni proje](docs/screenshots/08b-yeni-proje-ai.png) | ![StringLibrary](docs/screenshots/08-ai-kod-olusturucu.png) |
 
-| Generate | Rastgele sorular | Derleme hatası + AI |
+| Kod üretildi | Rastgele sorular | AI değerlendirme (başarılı) |
 | :---: | :---: | :---: |
-| ![Kod](docs/screenshots/08c-kod-olusturuldu.png) | ![Rastgele](docs/screenshots/10-rastgele-sorular.png) | ![Hata/AI](docs/screenshots/12-ai-oneri-degerlendirme.png) |
+| ![Kod](docs/screenshots/08c-kod-olusturuldu.png) | ![Rastgele](docs/screenshots/10-rastgele-sorular.png) | ![Değerlendirme](docs/screenshots/12-ai-oneri-degerlendirme.png) |
 
 | Forum | Rozetler | Profil |
 | :---: | :---: | :---: |
